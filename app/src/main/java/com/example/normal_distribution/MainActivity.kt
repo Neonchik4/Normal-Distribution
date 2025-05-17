@@ -27,6 +27,11 @@ class MainActivity : AppCompatActivity() {
             try {
                 val mean = meanEditText.text.toString().toDouble()
                 val variance = varianceEditText.text.toString().toDouble()
+
+                if (variance < 0.0) {
+                    throw IllegalArgumentException("Variance must be non-negative")
+                }
+
                 val stdDev = sqrt(variance)
 
                 val normalRandom = randomGenerator.nextGaussian()

@@ -26,7 +26,7 @@ class MainActivityInstrumentedTest {
         onView(withId(R.id.random_number_result)).check(matches(allOf(
             isDisplayed(),
             not(withText("Ошибка ввода")),
-            withText(matchesPattern("^\\d*\\.?\\d+\$")) // Числовой формат
+            withText(matchesPattern("^\\d*\\.?\\d+\$"))
         )))
     }
 
@@ -35,7 +35,8 @@ class MainActivityInstrumentedTest {
         onView(withId(R.id.mean_val)).perform(replaceText("2.0"), closeSoftKeyboard())
         onView(withId(R.id.variance_value)).perform(replaceText("0.0"), closeSoftKeyboard())
         onView(withId(R.id.get_random_num)).perform(click())
-        onView(withId(R.id.random_number_result)).check(matches(withText("7.4"))) // exp(2.0) ≈ 7.389 → округляется до 7.4
+        // exp(2.0) ≈ 7.389 → округляется до 7.4
+        onView(withId(R.id.random_number_result)).check(matches(withText("7.4")))
     }
 
     @Test
@@ -47,9 +48,7 @@ class MainActivityInstrumentedTest {
         onView(withId(R.id.random_number_result)).check { view, _ ->
             firstValue = (view as? android.widget.TextView)?.text.toString()
         }
-
-        // Снова нажимаем, чтобы сравнить результат
-        Thread.sleep(500) // Небольшая задержка перед генерацией нового числа
+        Thread.sleep(500)
         onView(withId(R.id.get_random_num)).perform(click())
         onView(withId(R.id.random_number_result)).check(matches(not(withText(firstValue))))
     }

@@ -59,9 +59,10 @@
 
         <TextView
             android:id="@+id/random_number_result"
-            android:layout_width="160dp"
-            android:layout_height="40dp"
+            android:layout_width="184dp"
+            android:layout_height="74dp"
             android:text=""
+            android:textSize="40sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"
